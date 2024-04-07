@@ -1,0 +1,484 @@
+body {
+    padding: 0px;
+    margin: 0px;
+}
+strong {
+    color: red;
+}
+span.error{
+    color: red;
+}
+.home {
+    color: black;
+    background-color: white;
+    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  }
+.home:hover {
+    color: white;
+    background-color: #ff4500;
+}
+.save, .update {
+    color: black;
+    background-color: white;
+    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out ;
+  }
+.save:hover {
+    color: white;
+    background-color: green;
+}
+.update:hover {
+    color: white;
+    background-color: green;
+}
+#home {
+    color: black;
+    background-color: white;
+    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  }
+#home:hover {
+    color: white;
+    background-color: #00BFFF;
+}
+.add {
+    color: black;
+    background-color: white;
+    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  }
+.add:hover {
+    color: white;
+    background-color: #00bfff;
+}
+.edit {
+    color: blue;
+    background-color: white;
+    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  }
+.edit:hover {
+    color: white;
+    background-color: #191970;
+}
+.delete {
+    color: red;
+    background-color: white;
+    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  }
+.delete:hover {
+    color: white;
+    background-color: red;
+}
+.search {
+    color: black;
+    background-color: white;
+    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  }
+.search:hover {
+    color: white;
+    background-color: black;
+}
+input, .major-names, .home, .add, .save, .search, .update {
+    border-radius: 5px;
+}
+.edit, .delete {
+    border-radius: 10px;
+}
+.table-student tr:nth-child(even){background-color: #E0FFFF;}
+    
+.table-student tr:hover {background-color: #ddd;}
+.form-student, .form-updatestudent{
+    background-color: #E0FFFF;
+}
+
+/* Responsive cho màn hình nhỏ (dưới 768px) */
+@media (max-width: 768px) {
+    .col {
+        width: 5%;
+    }
+    div.form-student h3 {
+        text-align: center;
+        font-size: 25px;
+        padding: 2%;
+    }
+    
+    div.form-student label{
+        width: 23%;
+        padding: 5px;
+    }
+    div.form-student input[type="text"] {
+        margin-bottom: 10px;
+        padding: 5px;
+    }
+    div.form-student {
+        width: 90%;
+        margin-top: 5%;
+        padding-left: 2%;
+        padding-bottom: 2%;
+        border: 1px solid #ccc;
+    }
+    #fullname {
+        width: 35%;
+    }
+    #code , #address{
+        width: 20%;
+    }
+    #phone{
+        width: 18%;
+    }
+    #year{
+        width: 10%;
+    }
+
+
+    .vehicles{
+        padding-left: 110px;
+    }
+    .save{
+        float: right;
+        margin-right: 10px;
+    }
+
+    .search, .info {
+        float:right
+    }
+    .info {
+        width: 20%;
+    }
+    
+    div.index h2{
+        font-size: 35px;
+        text-align: center;
+        padding: 2%;
+    }
+    div.menu {
+        width: 100%;
+        padding-top: 3%;
+        padding-right: 2%; 
+        padding-bottom: 0px;
+    }
+    
+    div.list-student {
+        width: 100%;
+        padding-right: 2%;        
+    }
+    .table-student {
+        border-collapse: collapse;
+        width: 100%;
+        display: block;
+    }
+    .table-student td, .table-student th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+    td:nth-of-type(4), th:nth-of-type(4), td:nth-of-type(9), th:nth-of-type(9), td:nth-of-type(10), th:nth-of-type(10) {
+        display: none;
+      }
+    .table-student th {
+        text-align: left;
+        background-color: #87CEFA;
+        color: white;
+    }
+
+
+    div.form-updatestudent h3 {
+        text-align: center;
+        font-size: 25px;
+        padding: 2%;
+    }
+    
+    div.form-updatestudent label{
+        width: 23%;
+        padding: 5px;
+    }
+    div.form-updatestudent input[type="text"] {
+        margin-bottom: 10px;
+        padding: 5px;
+    }
+    div.form-updatestudent {
+        width: 90%;
+        margin-top: 5%;
+        padding-left: 2%;
+        padding-bottom: 2%;
+        border: 1px solid #ccc;
+    }
+    #fullnameu {
+        width: 35%;
+    }
+    #codeu , #addressu{
+        width: 20%;
+    }
+    #phoneu{
+        width: 18%;
+    }
+    #yearu{
+        width: 10%;
+    }
+
+
+    .vehiclesu{
+        padding-left: 110px;
+    }
+    .update{
+        float: right;
+        margin-right: 10px;
+    }
+
+    
+    
+}
+  
+  /* Responsive cho màn hình tầm trung (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .col {
+        width: 15%;
+    }
+    div.form-student h3 {
+        text-align: center;
+        font-size: 25px;
+        padding: 2%;
+    }
+    
+    div.form-student label{
+        width: 23%;
+        padding: 5px;
+    }
+    div.form-student input[type="text"] {
+        margin-bottom: 10px;
+        padding: 5px;
+    }
+    div.form-student {
+        width: 80%;
+        margin-top: 5%;
+        padding-left: 2%;
+        padding-bottom: 2%;
+        border: 1px solid #ccc;
+    }
+    #fullname {
+        width: 35%;
+    }
+    #code , #address{
+        width: 20%;
+    }
+    #phone{
+        width: 18%;
+    }
+    #year{
+        width: 10%;
+    }
+    .vehicles{
+        padding-left: 110px;
+    }
+    .save{
+        float: right;
+        margin-right: 10px;
+    }
+
+    .search, .info {
+        float:right
+    }
+    .info {
+        width: 20%;
+    }
+    
+    div.index h2{
+        font-size: 35px;
+        text-align: center;
+        padding: 2%;
+    }
+    div.menu {
+        width: 100%;
+        padding-left: 2%;
+        padding-right: 2%;
+        padding-top: 3%;
+        padding-bottom: 0px;
+    }
+    
+    div.list-student {
+        width: 100%;
+        padding-left: 2%;
+        padding-right: 2%;        
+    }
+    .table-student {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    .table-student td, .table-student th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+    td:nth-of-type(10), th:nth-of-type(10) {
+        display: none;
+      }
+    .table-student th {
+        text-align: left;
+        background-color: #87CEFA;
+        color: white;
+    }
+
+
+    div.form-updatestudent h3 {
+        text-align: center;
+        font-size: 25px;
+        padding: 2%;
+    }
+    
+    div.form-updatestudent label{
+        width: 23%;
+        padding: 5px;
+    }
+    div.form-updatestudent input[type="text"] {
+        margin-bottom: 10px;
+        padding: 5px;
+    }
+    div.form-updatestudent {
+        width: 80%;
+        margin-top: 5%;
+        padding-left: 2%;
+        padding-bottom: 2%;
+        border: 1px solid #ccc;
+    }
+    #fullnameu {
+        width: 35%;
+    }
+    #codeu , #addressu{
+        width: 20%;
+    }
+    #phoneu {
+        width: 18%;
+    }
+    #yearu {
+        width: 10%;
+    }
+    .vehiclesu{
+        padding-left: 110px;
+    }
+    .update{
+        float: right;
+        margin-right: 10px;
+    }
+}
+  
+  /* Responsive cho màn hình lớn (trên 1024px) */
+@media (min-width: 1024px) {
+    .col {
+        width: 25%;
+    }
+    div.form-student h3 {
+        text-align: center;
+        font-size: 25px;
+        padding: 2%;
+    }
+    
+    div.form-student label{
+        width: 23%;
+        padding: 5px;
+    }
+    div.form-student input[type="text"] {
+        margin-bottom: 10px;
+        padding: 5px;
+    }
+    div.form-student {
+        width: 50%;
+        margin-top: 5%;
+        padding-left: 2%;
+        padding-bottom: 2%;
+        border: 1px solid #ccc;
+    }
+    #fullname {
+        width: 35%;
+    }
+    #code , #address{
+        width: 20%;
+    }
+    #phone{
+        width: 18%;
+    }
+    #year{
+        width: 10%;
+    }
+    .vehicles{
+        padding-left: 10%;
+    }
+    .save{
+        float: right;
+        margin-right: 5%;
+    }
+
+    .search, .info {
+        float:right
+    }
+    .info {
+        width: 20%;
+    }
+    
+    div.index h2{
+        font-size: 35px;
+        text-align: center;
+        padding: 2%;
+    }
+    div.menu {
+        width: 100%;
+        padding-left: 2%;
+        padding-right: 2%;
+        padding-top: 3%;
+        padding-bottom: 0px;
+    }
+    
+    div.list-student {
+        width: 100%;
+        padding-left: 2%;
+        padding-right: 2%;        
+    }
+    .table-student {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    .table-student td, .table-student th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+    .table-student th {
+        text-align: left;
+        background-color: #87CEFA;
+        color: white;
+    }
+    
+    div.form-updatestudent h3 {
+        text-align: center;
+        font-size: 25px;
+        padding: 2%;
+    }
+    
+    div.form-updatestudent label{
+        width: 23%;
+        padding: 5px;
+    }
+    div.form-updatestudent input[type="text"] {
+        margin-bottom: 10px;
+        padding: 5px;
+    }
+    div.form-updatestudent {
+        width: 50%;
+        margin-top: 5%;
+        padding-left: 2%;
+        padding-bottom: 2%;
+        border: 1px solid #ccc;
+    }
+    #fullnameu {
+        width: 35%;
+    }
+    #codeu , #addressu{
+        width: 20%;
+    }
+    #phoneu {
+        width: 18%;
+    }
+    #yearu{
+        width: 10%;
+    }
+    .vehiclesu {
+        padding-left: 10%;
+    }
+    .update {
+        float: right;
+        margin-right: 5%;
+    }
+}

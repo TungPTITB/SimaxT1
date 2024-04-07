@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/644eb93e8d.js" crossorigin="anonymous"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý sinh viên</title>
+</head>
+<body onload="renderListStudent()">
+    <div class="row">
+        <div class="col"></div>
+        <div class="form-student" id="form-student">
+            <h3>Thông tin sinh viên</h3>
+            <label>Họ và tên (<strong class="strong*">*</strong>)</label>
+            <input type="text" id="fullname" placeholder="VD: Nguyễn Văn A" />
+            <span id="fullnamee" class="error"> Vui lòng điền đầy đủ họ và tên</span>
+            <br/>
+            <label>Ngày sinh</label>
+            <input type="date" id="birthday" />
+            <br/>
+            <label>Giới tính</label>
+            <input type="radio" name="gender" id="male" value="1" checked/>Nam
+            <input type="radio" name="gender" id="female" value="0"/>Nữ
+            <br/>
+            <label>Mã sinh viên (<strong class="strong*">*</strong>)</label>
+            <input type="text" id="code" class="year" />
+            <span id="codee" class="error"> Vui lòng điền mã sinh viên</span>
+            <br/>
+            <label>Số điện thoại (<strong class="strong*">*</strong>)</label>
+            <input type="text" id="phone"  />
+            <span id="phonee" class="error"> Vui lòng điền số điện thoại</span>
+            <br/>
+            <label>Địa chỉ</label>
+            <input type="text" id="address" placeholder="VD: Hà Nội" />
+            <br/>
+            <label for="major">Ngành học</label> 
+                <select name="major-names" id="major-names" class="major-names"> 
+                <option value="cntt">Công nghệ thông tin</option> 
+                <option value="kt">Kế toán</option> 
+                <option value="dtvt">Điện tử viễn thông</option> 
+                <option value="tc">Tài chính</option> 
+                </select>
+            <br/>
+            <label>Khóa</label>
+            <input type="text" id="year" class="year" value="2020"  />
+            <br/>
+            <label for="vehicle">Phương tiện : </label> 
+                <br/>
+                <div class="vehicles">
+                    <input type="checkbox" id="walk" name="vehicle" value="walk">
+                    <label for="walk"> Đi bộ</label><br>
+                    <input type="checkbox" id="bicycle" name="vehicle" value="bicycle">
+                    <label for="bycicle"> Xe đạp</label><br>
+                    <input type="checkbox" id="motor" name="vehicle" value="motor">
+                    <label for="motor"> Xe máy</label><br>
+                    <input type="checkbox" id="car" name="vehicle" value="car">
+                    <label for="car"> Ô tô</label><br><br> 
+                </div> 
+            <p><b>Các trường có (<strong class="strong*">*</strong>) yêu cầu phải nhập</b></p>
+            <button class="home" ><i class="fa-solid fa-xmark"></i> Hủy</button>
+            <button class="save" id="save"><i class="fa-solid fa-check"></i> Lưu lại</button>        
+        </div>
+        <div class="index">
+            <h2>Quản lý sinh viên</h2>
+            <div class="menu">
+                <button class="home" id="home"><i class="fa-solid fa-house"></i> Trang chủ</button>
+                <button id="add" class="add"><i class="fa-solid fa-file-circle-plus"></i> Thêm</button>
+                <button id="search" class="search"><i class="fa-solid fa-magnifying-glass"></i> Tìm kiếm</button>
+                <input type="text" placeholder="Tìm kiếm . . ." class="info" id="info">
+                
+            </div>
+            <div class="list-student">
+                <table class="table-student">     
+                </table>
+            </div>
+        </div>
+        <div class="form-updatestudent" id="form-updatestudent">
+            <h3>Thông tin sinh viên</h3>
+            <label>Họ và tên (<strong class="strong*">*</strong>)</label>
+            <input type="text" id="fullnameu" placeholder="VD: Nguyễn Văn A" style="width: 200px;"/>
+            <span id="fullnameeu" class="error"> Vui lòng điền đầy đủ họ và tên</span>
+            <br/>
+            <label>Ngày sinh</label>
+            <input type="date" id="birthdayu" />
+            <br/>
+            <label>Giới tính</label>
+            <input type="radio" name="genderu" id="male" value="1" checked/>Nam
+            <input type="radio" name="genderu" id="female" value="0"/>Nữ
+            <br/>
+            <label>Mã sinh viên (<strong class="strong*">*</strong>)</label>
+            <input type="text" id="codeu" class="year" style="width: 120px;" />
+            <span id="codeeu" class="error"> Vui lòng điền mã sinh viên</span>
+            <br/>
+            <label>Số điện thoại (<strong class="strong*">*</strong>)</label>
+            <input type="text" id="phoneu" style="width: 120px;" />
+            <span id="phoneeu" class="error"> Vui lòng điền số điện thoại</span>
+            <br/>
+            <label>Địa chỉ</label>
+            <input type="text" id="addressu" placeholder="VD: Hà Nội" style="width: 100px;"/>
+            <br/>
+            <label for="major">Ngành học</label> 
+                <select name="major-namesu" id="major-namesu"> 
+                <option value="cntt">Công nghệ thông tin</option> 
+                <option value="kt">Kế toán</option> 
+                <option value="dtvt">Điện tử viễn thông</option> 
+                <option value="tc">Tài chính</option> 
+                </select>
+            <br/>
+            <label>Khóa</label>
+            <input type="text" id="yearu" class="yearu" value="2020" style="width: 50px; height: 25px;" />
+            <br/>
+            <label for="vehicleu">Phương tiện : </label> 
+                <br/>
+                <div class="vehiclesu">
+                    <input type="checkbox" id="walku" name="vehicleu" value="walk">
+                    <label for="walk"> Đi bộ</label><br>
+                    <input type="checkbox" id="bicycleu" name="vehicleu" value="bicycle">
+                    <label for="bycicle"> Xe đạp</label><br>
+                    <input type="checkbox" id="motoru" name="vehicleu" value="motor">
+                    <label for="motor"> Xe máy</label><br>
+                    <input type="checkbox" id="caru" name="vehicleu" value="car">
+                    <label for="car"> Ô tô</label><br><br> 
+                </div> 
+            <p><b>Các trường có (<strong class="strong*">*</strong>) yêu cầu phải nhập</b></p>
+            <button class="home"><i class="fa-solid fa-xmark"></i> Hủy</button>
+            <button class="update" id="update"><i class="fa-solid fa-check"></i> Cập nhật</button>        
+        </div>
+        <div class="col"></div>
+    </div>   
+    <script src="./js/student.js"></script>
+</body>
+</html>
