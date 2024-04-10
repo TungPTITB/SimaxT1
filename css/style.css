@@ -2,20 +2,58 @@ body {
     padding: 0px;
     margin: 0px;
 }
+.content {
+    position: relative;
+}
+#overlay{
+    width: 100%;
+}
+.logo {
+    float: left;
+    margin-left: -2%;
+    margin-right: -2%;
+}
+.hve {
+    color: red;
+}
+.header {
+    background-color: 	#F08080;
+    width: 100%;
+    height: 100px;
+}
+.footer{
+    background-color: 	white;
+    width: 100%;
+    height: 100px;
+}
+.navbarr {
+    background-color: #B22222;
+    width: 100%;
+}
+.col-xd-3 {
+    background-color: #FFA07A;
+    height: 250px;
+    width: 15%;
+}
+.div-1 {
+    border-radius: 5px;
+    border: 1px solid #CD5C5C;
+    height: 20%;
+    margin-right: 10px;
+}  
+.content {
+    display: flex;
+    position: relative;
+  }
+
+.col-1, .col-2 , .index {
+    flex: 1;
+}
 strong {
     color: red;
 }
 span.error{
     color: red;
-}
-.home {
-    color: black;
-    background-color: white;
-    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
-  }
-.home:hover {
-    color: white;
-    background-color: #ff4500;
 }
 .save, .update {
     color: black;
@@ -30,14 +68,15 @@ span.error{
     color: white;
     background-color: green;
 }
-#home {
-    color: black;
-    background-color: white;
+#home , .but-1{
+    color: white;
+    background-color: #B22222;
+    border: 1px solid #B22222;
     transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   }
-#home:hover {
+#home:hover, .but-1:hover, .cancel:hover{
     color: white;
-    background-color: #00BFFF;
+    background-color: #DC143C;
 }
 .add {
     color: black;
@@ -46,7 +85,16 @@ span.error{
   }
 .add:hover {
     color: white;
-    background-color: #00bfff;
+    background-color: #000099;
+}
+.deleteall {
+    color: black;
+    background-color: white;
+    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  }
+.deleteall:hover {
+    color: white;
+    background-color: #DC143C;
 }
 .edit {
     color: blue;
@@ -66,6 +114,24 @@ span.error{
     color: white;
     background-color: red;
 }
+.but-choose {
+    color: black;
+    background-color: white;
+    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  }
+.but-choose:hover {
+    color: white;
+    background-color: #000099;
+}
+.but-chooseall {
+    color: black;
+    background-color: white;
+    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  }
+.but-chooseall:hover {
+    color: white;
+    background-color: #000099;
+}
 .search {
     color: black;
     background-color: white;
@@ -75,32 +141,236 @@ span.error{
     color: white;
     background-color: black;
 }
-input, .major-names, .home, .add, .save, .search, .update {
+input, .major-names, .add, .save, .search, .update, .deleteall, .cancel, .but-chooseall, .but-choose, .close-choose{
     border-radius: 5px;
 }
 .edit, .delete {
     border-radius: 10px;
 }
-.table-student tr:nth-child(even){background-color: #E0FFFF;}
+.table-student tr:nth-child(even){background-color: #FA8072;}
     
 .table-student tr:hover {background-color: #ddd;}
+.h3-add{
+    background-color: #8B0000;
+    width: 100%;
+    color: white;
+    border-radius: 10px;
+}
 .form-student, .form-updatestudent{
-    background-color: #E0FFFF;
+    position: absolute;
+    background-color: #E8E8E8;
+}
+.form-student.active, .form-updatestudent.active {
+    display: block;
+}
+td:nth-of-type(1), th:nth-of-type(1), td:nth-of-type(2), th:nth-of-type(2){
+    text-align: center;
+    width: 3px;
 }
 
+td:nth-of-type(4), th:nth-of-type(4), td:nth-of-type(5), th:nth-of-type(5), td:nth-of-type(6), th:nth-of-type(6){
+    text-align: center;
+    width: 120px;
+}
+td:nth-of-type(9), th:nth-of-type(9), td:nth-of-type(8), th:nth-of-type(8){
+    text-align: center;
+    width: 90px;
+}
+.majorfilter {
+    float: right;
+}
+.btn-hidden{
+    
+    color: white;
+    background-color: #B22222;
+    border: none;
+}
 /* Responsive cho màn hình nhỏ (dưới 768px) */
 @media (max-width: 768px) {
-    .col {
-        width: 5%;
+    .header{
+        height: 50px;
+        width: 100%;
     }
+    .logo{
+       width: 80px;
+       height: 50px;
+    }
+    .hv{
+        font-size: x-small;
+    }
+    .hve{
+        font-size: xx-small;
+    }
+    .col-xd-3{
+        display: none;
+    }
+    div.form-student h3 {
+        text-align: center;
+        font-size: 15px;
+        padding: 2%;
+        margin-bottom: 3%;
+    }
+    
+    div.form-student label{
+        width: 36%;
+        margin-left: 1%;
+        padding: 2px;
+    }
+    div.form-student input[type="text"] {
+        height: 25px;
+        margin-bottom: 10px;
+        padding: 5px;
+    }
+    div.form-student {
+        border-radius: 10px;
+        width: 96%;
+        margin-top: 2%;
+        margin-left: 2%;
+        padding-bottom: 1%;
+        border: 1px solid #ccc;
+    }
+    #fullname {
+        width: 45%;
+    }
+    #code , #address{
+        width: 35%;
+    }
+    #phone{
+        width: 30%;
+    }
+    #year{
+        width: 15%;
+    }
+    .vehicles{
+        margin-left: 37%;
+    }
+    p{
+        margin-left: 12%;
+    }
+    .save{
+        float: right;
+        margin-right: 15%;
+    }
+    .cancel{
+        margin-left: 15%;
+    }
+    .search, .info {
+        float:right;
+        height: 25px;
+    }
+    .info {
+        width: 20%;
+        
+    }
+    .content{
+        width: 100%;
+    }
+    .add, .but-choose, .but-chooseall, .close-choose, .deleteall{
+        height: 25px;
+        padding-bottom: 1%;
+    }
+    
+    div.index h2{
+        font-size: 20px;
+        padding: 0.4%;
+    }
+    div.menu {
+        width: 100%;
+        padding-left: 0.4%;
+        padding-top: 0.5%;
+    }
+    
+    div.list-student {
+        width: 100%;
+        padding-left: 0.4%;       
+    }
+    .table-student {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    .table-student td, .table-student th {
+        border: 1px solid #ddd;
+        padding: 2px;
+    }
+    .table-student th {
+        text-align: left;
+        background-color: #8B0000;
+        color: white;
+    }
+    td:nth-of-type(5), th:nth-of-type(5), td:nth-of-type(8), th:nth-of-type(8),td:nth-of-type(9), th:nth-of-type(9), td:nth-of-type(10), th:nth-of-type(10), td:nth-of-type(11), th:nth-of-type(11){
+        display: none;
+    }
+    .info{
+        width: 150px;
+    }
+    
+    div.form-updatestudent h3 {
+        text-align: center;
+        font-size: 15px;
+        padding: 2%;
+        margin-bottom: 3%;
+    }
+    
+    div.form-updatestudent label{
+        width: 36%;
+        margin-left: 1%;
+        padding: 2px;
+    }
+    div.form-updatestudent input[type="text"] {
+        height: 25px;
+        margin-bottom: 10px;
+        padding: 5px;
+    }
+    div.form-updatestudent {
+        border-radius: 10px;
+        width: 96%;
+        margin-top: 2%;
+        margin-left: 2%;
+        padding-bottom: 1%;
+        border: 1px solid #ccc;
+    }
+    #fullnameu {
+        width: 45%;
+    }
+    #codeu , #addressu{
+        width: 35%;
+    }
+    #phoneu{
+        width: 30%;
+    }
+    #yearu{
+        width: 15%;
+    }
+    .vehiclesu{
+        margin-left: 37%;
+    }
+    .update{
+        float: right;
+        margin-right: 15%;
+    }
+    .cancel{
+        margin-left: 15%;
+    }
+
+    
+    
+}
+  
+  /* Responsive cho màn hình tầm trung (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .btn-hidden {
+        display: none;
+      }
     div.form-student h3 {
         text-align: center;
         font-size: 25px;
         padding: 2%;
+        margin-bottom: 3%;
     }
     
     div.form-student label{
         width: 23%;
+        margin-left: 3%;
         padding: 5px;
     }
     div.form-student input[type="text"] {
@@ -108,10 +378,11 @@ input, .major-names, .home, .add, .save, .search, .update {
         padding: 5px;
     }
     div.form-student {
-        width: 90%;
-        margin-top: 5%;
-        padding-left: 2%;
-        padding-bottom: 2%;
+        border-radius: 10px;
+        width: 60%;
+        margin-top: 1%;
+        margin-left: 20%;
+        padding-bottom: 1%;
         border: 1px solid #ccc;
     }
     #fullname {
@@ -126,16 +397,19 @@ input, .major-names, .home, .add, .save, .search, .update {
     #year{
         width: 10%;
     }
-
-
     .vehicles{
-        padding-left: 110px;
+        margin-left: 27%;
+    }
+    p{
+        margin-left: 32%;
     }
     .save{
         float: right;
-        margin-right: 10px;
+        margin-right: 15%;
     }
-
+    .cancel{
+        margin-left: 15%;
+    }
     .search, .info {
         float:right
     }
@@ -145,47 +419,42 @@ input, .major-names, .home, .add, .save, .search, .update {
     
     div.index h2{
         font-size: 35px;
-        text-align: center;
-        padding: 2%;
+        padding: 0.4%;
     }
     div.menu {
         width: 100%;
-        padding-top: 3%;
-        padding-right: 2%; 
-        padding-bottom: 0px;
+        padding-left: 0.4%;
+        padding-top: 0.5%;
     }
     
     div.list-student {
         width: 100%;
-        padding-right: 2%;        
+        padding-left: 0.4%;       
     }
     .table-student {
         border-collapse: collapse;
         width: 100%;
-        display: block;
     }
     .table-student td, .table-student th {
         border: 1px solid #ddd;
         padding: 8px;
     }
-    td:nth-of-type(4), th:nth-of-type(4), td:nth-of-type(9), th:nth-of-type(9), td:nth-of-type(10), th:nth-of-type(10) {
-        display: none;
-      }
     .table-student th {
         text-align: left;
-        background-color: #87CEFA;
+        background-color: #8B0000;
         color: white;
     }
-
-
+    
     div.form-updatestudent h3 {
         text-align: center;
         font-size: 25px;
         padding: 2%;
+        margin-bottom: 3%;
     }
     
     div.form-updatestudent label{
         width: 23%;
+        margin-left: 3%;
         padding: 5px;
     }
     div.form-updatestudent input[type="text"] {
@@ -193,13 +462,14 @@ input, .major-names, .home, .add, .save, .search, .update {
         padding: 5px;
     }
     div.form-updatestudent {
-        width: 90%;
-        margin-top: 5%;
-        padding-left: 2%;
-        padding-bottom: 2%;
+        border-radius: 10px;
+        width: 60%;
+        margin-top: 1%;
+        margin-left: 20%;
+        padding-bottom: 1%;
         border: 1px solid #ccc;
     }
-    #fullnameu {
+    #fullnameu{
         width: 35%;
     }
     #codeu , #addressu{
@@ -211,164 +481,36 @@ input, .major-names, .home, .add, .save, .search, .update {
     #yearu{
         width: 10%;
     }
-
-
     .vehiclesu{
-        padding-left: 110px;
+        margin-left: 27%;
+    }
+    p{
+        margin-left: 32%;
     }
     .update{
         float: right;
-        margin-right: 10px;
+        margin-right: 15%;
     }
-
-    
-    
-}
-  
-  /* Responsive cho màn hình tầm trung (768px - 1024px) */
-@media (min-width: 768px) and (max-width: 1024px) {
-    .col {
-        width: 15%;
-    }
-    div.form-student h3 {
-        text-align: center;
-        font-size: 25px;
-        padding: 2%;
-    }
-    
-    div.form-student label{
-        width: 23%;
-        padding: 5px;
-    }
-    div.form-student input[type="text"] {
-        margin-bottom: 10px;
-        padding: 5px;
-    }
-    div.form-student {
-        width: 80%;
-        margin-top: 5%;
-        padding-left: 2%;
-        padding-bottom: 2%;
-        border: 1px solid #ccc;
-    }
-    #fullname {
-        width: 35%;
-    }
-    #code , #address{
-        width: 20%;
-    }
-    #phone{
-        width: 18%;
-    }
-    #year{
-        width: 10%;
-    }
-    .vehicles{
-        padding-left: 110px;
-    }
-    .save{
-        float: right;
-        margin-right: 10px;
-    }
-
-    .search, .info {
-        float:right
-    }
-    .info {
-        width: 20%;
-    }
-    
-    div.index h2{
-        font-size: 35px;
-        text-align: center;
-        padding: 2%;
-    }
-    div.menu {
-        width: 100%;
-        padding-left: 2%;
-        padding-right: 2%;
-        padding-top: 3%;
-        padding-bottom: 0px;
-    }
-    
-    div.list-student {
-        width: 100%;
-        padding-left: 2%;
-        padding-right: 2%;        
-    }
-    .table-student {
-        border-collapse: collapse;
-        width: 100%;
-    }
-    .table-student td, .table-student th {
-        border: 1px solid #ddd;
-        padding: 8px;
-    }
-    td:nth-of-type(10), th:nth-of-type(10) {
-        display: none;
-      }
-    .table-student th {
-        text-align: left;
-        background-color: #87CEFA;
-        color: white;
-    }
-
-
-    div.form-updatestudent h3 {
-        text-align: center;
-        font-size: 25px;
-        padding: 2%;
-    }
-    
-    div.form-updatestudent label{
-        width: 23%;
-        padding: 5px;
-    }
-    div.form-updatestudent input[type="text"] {
-        margin-bottom: 10px;
-        padding: 5px;
-    }
-    div.form-updatestudent {
-        width: 80%;
-        margin-top: 5%;
-        padding-left: 2%;
-        padding-bottom: 2%;
-        border: 1px solid #ccc;
-    }
-    #fullnameu {
-        width: 35%;
-    }
-    #codeu , #addressu{
-        width: 20%;
-    }
-    #phoneu {
-        width: 18%;
-    }
-    #yearu {
-        width: 10%;
-    }
-    .vehiclesu{
-        padding-left: 110px;
-    }
-    .update{
-        float: right;
-        margin-right: 10px;
+    .cancel{
+        margin-left: 15%;
     }
 }
   
   /* Responsive cho màn hình lớn (trên 1024px) */
 @media (min-width: 1024px) {
-    .col {
-        width: 25%;
-    }
+    .btn-hidden {
+        display: none;
+      }
     div.form-student h3 {
         text-align: center;
         font-size: 25px;
         padding: 2%;
+        margin-bottom: 3%;
     }
     
     div.form-student label{
         width: 23%;
+        margin-left: 3%;
         padding: 5px;
     }
     div.form-student input[type="text"] {
@@ -376,10 +518,11 @@ input, .major-names, .home, .add, .save, .search, .update {
         padding: 5px;
     }
     div.form-student {
-        width: 50%;
-        margin-top: 5%;
-        padding-left: 2%;
-        padding-bottom: 2%;
+        border-radius: 10px;
+        width: 60%;
+        margin-top: 1%;
+        margin-left: 20%;
+        padding-bottom: 1%;
         border: 1px solid #ccc;
     }
     #fullname {
@@ -395,13 +538,18 @@ input, .major-names, .home, .add, .save, .search, .update {
         width: 10%;
     }
     .vehicles{
-        padding-left: 10%;
+        margin-left: 27%;
+    }
+    p{
+        margin-left: 32%;
     }
     .save{
         float: right;
-        margin-right: 5%;
+        margin-right: 15%;
     }
-
+    .cancel{
+        margin-left: 15%;
+    }
     .search, .info {
         float:right
     }
@@ -411,21 +559,17 @@ input, .major-names, .home, .add, .save, .search, .update {
     
     div.index h2{
         font-size: 35px;
-        text-align: center;
-        padding: 2%;
+        padding: 0.4%;
     }
     div.menu {
         width: 100%;
-        padding-left: 2%;
-        padding-right: 2%;
-        padding-top: 3%;
-        padding-bottom: 0px;
+        padding-left: 0.4%;
+        padding-top: 0.5%;
     }
     
     div.list-student {
         width: 100%;
-        padding-left: 2%;
-        padding-right: 2%;        
+        padding-left: 0.4%;       
     }
     .table-student {
         border-collapse: collapse;
@@ -437,7 +581,7 @@ input, .major-names, .home, .add, .save, .search, .update {
     }
     .table-student th {
         text-align: left;
-        background-color: #87CEFA;
+        background-color: #8B0000;
         color: white;
     }
     
@@ -445,10 +589,12 @@ input, .major-names, .home, .add, .save, .search, .update {
         text-align: center;
         font-size: 25px;
         padding: 2%;
+        margin-bottom: 3%;
     }
     
     div.form-updatestudent label{
         width: 23%;
+        margin-left: 3%;
         padding: 5px;
     }
     div.form-updatestudent input[type="text"] {
@@ -456,29 +602,36 @@ input, .major-names, .home, .add, .save, .search, .update {
         padding: 5px;
     }
     div.form-updatestudent {
-        width: 50%;
-        margin-top: 5%;
-        padding-left: 2%;
-        padding-bottom: 2%;
+        border-radius: 10px;
+        width: 60%;
+        margin-top: 1%;
+        margin-left: 20%;
+        padding-bottom: 1%;
         border: 1px solid #ccc;
     }
-    #fullnameu {
+    #fullnameu{
         width: 35%;
     }
     #codeu , #addressu{
         width: 20%;
     }
-    #phoneu {
+    #phoneu{
         width: 18%;
     }
     #yearu{
         width: 10%;
     }
-    .vehiclesu {
-        padding-left: 10%;
+    .vehiclesu{
+        margin-left: 27%;
     }
-    .update {
+    p{
+        margin-left: 32%;
+    }
+    .update{
         float: right;
-        margin-right: 5%;
+        margin-right: 15%;
+    }
+    .cancel{
+        margin-left: 15%;
     }
 }

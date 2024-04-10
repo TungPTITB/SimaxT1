@@ -1,4 +1,17 @@
 $(document).ready(function () {
+  $('.btn-hidden').click(function(){
+    $('.col-xd-3').toggle();
+    if ($('.col-xd-3').is(":visible")) {
+      $('.col-xd-3').css("position", "absolute");
+    } else {
+      $('.col-xd-3').css("position", "relative");
+    }
+  });
+  $(".close-choose").hide();
+  $(".select-delete").hide();
+  $(".choose-delete").hide();
+  $(".but-chooseall").hide();
+    $(".deleteall").hide();
   $(".error").hide();
   $("#form-student").hide();
   $("#form-updatestudent").hide();
@@ -16,6 +29,13 @@ $(document).ready(function () {
       })
       .get();
     let gender = $('input[name="gender"]:checked').val();
+    let tmp = 1;
+
+    if (/^<.+>/.test(fullname) || /^<.+>/.test(code) || /^<.+>/.test(year) || /^<.+>/.test(address) || /^<.+>/.test(phone)) {
+      // Xử lý giá trị nhập vào là thẻ HTML
+      alert("Không được nhập thẻ HTML!");
+      tmp = 0;;
+    }
 
     if (fullname.trim().length == 0) {
       fullname = "";
@@ -44,7 +64,24 @@ $(document).ready(function () {
       $("#codee").hide();
     }
 
-    if (fullname && phone && code) {
+    let student = localStorage.getItem("student")
+    ? JSON.parse(localStorage.getItem("student"))
+    : [];
+    let x = 1;
+    for ( let i = 0; i < student.length; i++) {
+      if(code == student[i].code){
+        alert("Bị trùng mã sinh viên. Vui lòng nhập lại!");
+        x=0;
+        break;
+      }
+      if(phone == student[i].phone){
+        alert("Bị trùng số điện thoại.  Vui lòng nhập lại!");
+        x=0;
+        break;
+      }
+     }
+
+    if (fullname && phone && code && tmp && x) {
       let student = localStorage.getItem("student")
         ? JSON.parse(localStorage.getItem("student"))
         : [];
@@ -65,16 +102,30 @@ $(document).ready(function () {
     }
   });
 
-  $("#add").click(function () { // Click button Thêm
-    $("#form-student").show();
-    $(".index").hide();
-  });
+  $("#add").click( function() { //Click button Thêm
+      $("#form-student").toggle();
+      // Update overlay position based on form visibility
+      if ($("#form-student").is(":visible")) {
+        $('#overlay').css("position", "fixed");
+      } else {
+        $('#overlay').css("position", "relative");
+      }
 
-  $(".home").click(function () { // Click button Thêm
+  // Hide update student form (optional)
+  $("#form-updatestudent").hide();
+    });
+
+  $(".home").click(function () { // Click button Trang chủ
     location.reload();
   });
+  $(".cancel").click(function () { // Click button Hủy
+    $('.form-student').hide();
+    $('.form-updatestudent').hide();
+    $('#overlay').css("position", "relative");
 
-  $("#search").click(function(){ // Click button Update
+  });
+
+  $("#search").click(function(){ // Click button Search
     let info = $('#info').val();
     let infoo = info.toLowerCase();
     if(infoo == "công nghệ thông tin"){
@@ -87,8 +138,76 @@ $(document).ready(function () {
       info = "cntt";
     }
     let students = localStorage.getItem("student") ? JSON.parse(localStorage.getItem("student")) : [];
-    let studentSearch = students.filter(student => student.fullname == info || student.code == info || student.phone == info || student.year == info || student.address == info || student.majornames == info || student.birthday == info);
+    let studentSearch = students.filter(student => student.fullname.toLowerCase().includes(info.toLowerCase()) || student.code.toLowerCase().includes(info.toLowerCase()) || student.address.toLowerCase().includes(info.toLowerCase()) || student.phone == info || student.birthday == info);
     if(studentSearch==""){
+      location.reload();
+    }
+    localStorage.setItem("studentSearch", JSON.stringify(studentSearch));
+    renderListStudentSearch();
+  });
+
+  $(".but-choose").click(function(){ 
+    $(".select-delete").show();
+    $(".choose-delete").show();
+    $(".but-chooseall").show();
+    $(".deleteall").show();
+    $(".but-choose").hide();
+    $(".close-choose").show();
+  });
+  $(".close-choose").click(function(){ 
+    $(".select-delete").hide();
+    $(".choose-delete").hide();
+    $(".but-chooseall").hide();
+    $(".deleteall").hide();
+    $(".but-choose").show();
+    $(".close-choose").hide();
+  });
+
+  let a=0;
+  $(".but-chooseall").click(function(){ // Chọn tất cả
+    a++;
+    if(a%2!==0){
+      $(".choose-delete-one").prop("checked", true);
+    }else{
+      $(".choose-delete-one").prop("checked", false);
+    }    
+  });
+
+  $(".deleteall").click(function() { // Xóa tất cả
+    let student = localStorage.getItem("student")
+      ? JSON.parse(localStorage.getItem("student"))
+      : [];
+      // Duyệt qua tất cả các checkbox
+      let studentDeletes = $('.choose-delete-one:checked')
+      .map(function () {
+        return $(this).val();
+      })
+      .get();
+      if(studentDeletes.length != 0){
+        if (confirm("Bạn có chắc chắn muốn xóa đối tượng này ?")) {
+          let x;
+          for ( let i = 0; i < studentDeletes.length; i++) {
+            for ( let j = 0; j < student.length; j++) {
+              if(studentDeletes[i] == student[j].phone){
+                student.splice(j, 1);
+                break;
+              }
+          }
+         }
+        localStorage.setItem("student", JSON.stringify(student));
+        location.reload();
+        } 
+      }else{
+        alert("Vui lòng chọn đối tượng !!!");
+      }
+  });
+
+  $(".majorfilter").change(function(){ // Theo theo chuyên ngành
+
+    let students = localStorage.getItem("student") ? JSON.parse(localStorage.getItem("student")) : [];
+    let major = $(this).val();
+    let studentSearch = students.filter(student => student.majornames == major);
+    if(studentSearch ==""){
       location.reload();
     }
     localStorage.setItem("studentSearch", JSON.stringify(studentSearch));
@@ -106,6 +225,7 @@ function renderListStudent() {
   }
 
   let tableContent = `<tr>
+  <th class="select-delete">Chọn</th>
   <th>STT</th>
   <th>Họ và tên</th>
   <th>Mã sinh viên</th>
@@ -144,6 +264,7 @@ function renderListStudent() {
     index++;
 
     tableContent += `<tr>
+          <td class="choose-delete"><input class="choose-delete-one" type="checkbox" value="${stu.phone}"></td>
           <td>${index}</td>
           <td>${stu.fullname}</td>
           <td>${stu.code}</td>
@@ -154,44 +275,51 @@ function renderListStudent() {
           <td>${genderLabel}</td>
           <td>${stu.address}</td>
           <td>${vehicleLabel}</td>
-          <td><button class="edit" onclick="updateStudent(${stu.phone})" ><i class="fa-solid fa-pen-to-square"></i> Sửa</button> | <button class="delete" onclick="deleteStudent(${stu.phone})" ><i class="fa-solid fa-trash"></i> Xóa</button></td>
+          <td><button class="edit" onclick="updateStudent('${stu.phone}')" ><i class="fa-solid fa-pen-to-square" title="Sửa"></i> </button>  <button class="delete" onclick="deleteStudent('${stu.phone}')" ><i class="fa-solid fa-trash" title="Xóa"></i></button></td>
       </tr>`;
   });
 
   $(".table-student").html(tableContent);
+  $(".select-delete").hide();
+  $(".choose-delete").hide();
 }
 
-function deleteStudent(studentId) { //Xóa student ra khỏi mảng
-  if (confirm("Bạn có chắc chắn muốn xóa đối tượng này?")) {
-    let student = localStorage.getItem("student")
+function deleteStudent( studentId) { //Xóa student ra khỏi mảng
+  let student = localStorage.getItem("student")
     ? JSON.parse(localStorage.getItem("student"))
     : [];
-    let x;
+    let x=-1;
     for ( let i = 0; i < student.length; i++) {
       if(studentId == student[i].phone){
-        console.log(i);
         x=i;
         break;
       }
-     }
+    }
+  if (x!=-1 && confirm("Bạn có muốn xóa " + student[x].fullname +" - " + student[x].code+" không?")) {
     student.splice(x, 1);
     localStorage.setItem("student", JSON.stringify(student));
-    renderListStudent();
-  } else {
-  }
-  
+    if(x==0){
+      location.reload();
+    }else{
+      renderListStudent();
+    }
+  } 
 }
 
 function updateStudent(studentId) { //Cập nhật student
+  $(".form-student").hide();
+  if ($("#form-updatestudent").is(":visible")) {
+    $('#overlay').css("position", "relative");
+  } else {
+    $('#overlay').css("position", "fixed");
+  }
   let student = localStorage.getItem("student")
     ? JSON.parse(localStorage.getItem("student"))
     : [];
   let studentToUpdate = student.find((student) => student.phone == studentId); // Lấy student dựa trên số điện thoại
   console.log(studentToUpdate);
 
-  $(".form-updatestudent").show();
-  $(".index").hide();
-  $("#form-student").hide();
+  $("#form-updatestudent").toggle();
 
   $("#fullnameu").val(studentToUpdate.fullname); // Hiển thị thông tin đã có sẵn
   $("#codeu").val(studentToUpdate.code);
@@ -229,6 +357,13 @@ function updateStudent(studentId) { //Cập nhật student
       })
       .get();
     let gender = $('input[name="genderu"]:checked').val();
+    let tmpp = 1;
+
+    if (/^<.+>/.test(fullname) || /^<.+>/.test(code) || /^<.+>/.test(year) || /^<.+>/.test(address) || /^<.+>/.test(phone)) {
+      // Xử lý giá trị nhập vào là thẻ HTML
+      alert("Không được nhập thẻ HTML!");
+      tmpp = 0;;
+    }
 
     if (fullname.trim().length == 0) {
       fullname = "";
@@ -256,8 +391,38 @@ function updateStudent(studentId) { //Cập nhật student
     } else {
       $("#codeeu").hide();
     }
+    let students = localStorage.getItem("student")
+    ? JSON.parse(localStorage.getItem("student"))
+    : [];
+    let x=-1;
+    let y=-1;
+    for(let i=0; i<students.length ; i++){
+      if(code==students[i].code){
+        x=i;
+        break;
+      }
+    }
+    for(let i=0; i<students.length ; i++){
+      if(phone==students[i].phone){
+        y=i; 
+        break;
+      }
+    }
+    let tmp=0;
+    if(x==-1 && y==-1){
+      tmp=1;
+    }else if(x==y){
+      tmp=1;
+    }else if(x==-1 && phone==students[y].phone){
+      tmp=1;
+    }else if(y==-1 && code==students[x].code){
+      tmp=1;
+    }else{
+      alert('Trùng thông tin!!!');
+      tmp=0;
+    }
 
-    if (fullname && phone && code) { // Nếu thỏa mãn, lấy thông tin
+    if (fullname && phone && code && tmp && tmpp) { // Nếu thỏa mãn, lấy thông tin
       studentToUpdate.fullname = fullname;
       studentToUpdate.birthday = birthday;
       studentToUpdate.gender = gender;
@@ -275,7 +440,7 @@ function updateStudent(studentId) { //Cập nhật student
   });
 }
 
-function renderListStudentSearch() {
+function renderListStudentSearch() { // Hàm tìm kiếm
   let studentSearch = localStorage.getItem("studentSearch")
     ? JSON.parse(localStorage.getItem("studentSearch"))
     : [];
@@ -285,6 +450,7 @@ function renderListStudentSearch() {
   }
 
   let tableContent = `<tr>
+      <th class="select-delete">Chọn</th>
       <th>STT</th>
       <th>Họ và tên</th>
       <th>Mã sinh viên</th>
@@ -324,6 +490,7 @@ function renderListStudentSearch() {
     index++;
 
     tableContent += `<tr>
+          <td class="choose-delete"><input class="choose-delete-one" type="checkbox" value="${stu.phone}"></td>
           <td>${index}</td>
           <td>${stu.fullname}</td>
           <td>${stu.code}</td>
@@ -334,9 +501,11 @@ function renderListStudentSearch() {
           <td>${genderLabel}</td>
           <td>${stu.address}</td>
           <td>${vehicleLabel}</td>
-          <td><button class="edit" onclick="updateStudent(${stu.phone})" ><i class="fa-solid fa-pen-to-square"></i> Sửa</button> | <button class="delete" onclick="deleteStudent(${stu.phone})" ><i class="fa-solid fa-trash"></i> Xóa</button></td>
+          <td><button class="edit" onclick="updateStudent('${stu.phone}')" ><i class="fa-solid fa-pen-to-square" title="Sửa"></i></button>  <button class="delete" onclick="deleteStudent('${stu.phone}')" ><i class="fa-solid fa-trash" title="Xóa"></i></button></td>
       </tr>`;
   });
 
   $(".table-student").html(tableContent);
+  $(".select-delete").hide();
+  $(".choose-delete").hide();
 }
