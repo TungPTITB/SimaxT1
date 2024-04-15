@@ -23,7 +23,8 @@ $(document).ready(function () {
     let address = $("#address").val();
     let majornames = $("#major-names").val();
     let year = $("#year").val();
-    let vehicle = $('input[name="vehicle"]:checked')
+    let aclass = $("#aclass").val();
+    let certificate = $('input[name="certificate"]:checked')
       .map(function () {
         return $(this).val();
       })
@@ -90,11 +91,12 @@ $(document).ready(function () {
         birthday: birthday,
         gender: gender,
         code: code,
+        aclass: aclass,
         phone: phone,
         address: address,
         majornames: majornames,
         year: year,
-        vehicle: vehicle,
+        certificate: certificate,
       });
 
       localStorage.setItem("student", JSON.stringify(student));
@@ -106,14 +108,22 @@ $(document).ready(function () {
       $("#form-student").toggle();
       // Update overlay position based on form visibility
       if ($("#form-student").is(":visible")) {
-        $('#overlay').css("position", "fixed");
+        $('#overlay').css("position", "fixed")
       } else {
         $('#overlay').css("position", "relative");
       }
 
   // Hide update student form (optional)
-  $("#form-updatestudent").hide();
+     $("#form-updatestudent").hide();
     });
+    $(document).on('dblclick', function(event) {
+      if ($("#form-student").is(":visible") && !$(event.target).closest('#form-student').length) {
+        console.log("ok");
+        $("#form-student").hide();
+        $('#overlay').css("position", "relative"); // Reset overlay position
+      }
+    });
+  
 
   $(".home").click(function () { // Click button Trang chủ
     location.reload();
@@ -138,7 +148,7 @@ $(document).ready(function () {
       info = "cntt";
     }
     let students = localStorage.getItem("student") ? JSON.parse(localStorage.getItem("student")) : [];
-    let studentSearch = students.filter(student => student.fullname.toLowerCase().includes(info.toLowerCase()) || student.code.toLowerCase().includes(info.toLowerCase()) || student.address.toLowerCase().includes(info.toLowerCase()) || student.phone == info || student.birthday == info);
+    let studentSearch = students.filter(student => student.fullname.toLowerCase().includes(info.toLowerCase()) || student.code.toLowerCase().includes(info.toLowerCase()) || student.address.toLowerCase().includes(info.toLowerCase()) || student.phone == info || student.birthday == info || student.year == info);
     if(studentSearch==""){
       location.reload();
     }
@@ -215,6 +225,8 @@ $(document).ready(function () {
   });
 });
 
+
+
 function renderListStudent() {
   let student = localStorage.getItem("student")
     ? JSON.parse(localStorage.getItem("student"))
@@ -229,13 +241,14 @@ function renderListStudent() {
   <th>STT</th>
   <th>Họ và tên</th>
   <th>Mã sinh viên</th>
+  <th>Lớp</th>
   <th>Ngày sinh</th>
   <th>Số điện thoại</th>
   <th>Ngành</th>
   <th>Năm học</th>
   <th>Giới tính</th>
   <th>Quê quán</th>
-  <th>Phương tiện</th>
+  <th>Chứng chỉ</th>
   <th></th>
   </tr>`;
 
@@ -253,13 +266,12 @@ function renderListStudent() {
       majorLabel = "Tài chính";
     }
 
-    let vehicleLabel = stu.vehicle;
-    vehicleLabel.forEach(funSwitch);
+    let certificateLabel = stu.certificate;
+    certificateLabel.forEach(funSwitch);
     function funSwitch(item, index, arr) {
-      if (arr[index] == "walk") arr[index] = "Đi bộ";
-      if (arr[index] == "motor") arr[index] = "Xe máy";
-      if (arr[index] == "bicycle") arr[index] = "Xe đạp";
-      if (arr[index] == "car") arr[index] = "Ô tô";
+      if (arr[index] == "aptis") arr[index] = " Aptis";
+      if (arr[index] == "ielts") arr[index] = " Ielts";
+      if (arr[index] == "toeic") arr[index] = " Toeic";
     }
     index++;
 
@@ -268,13 +280,14 @@ function renderListStudent() {
           <td>${index}</td>
           <td>${stu.fullname}</td>
           <td>${stu.code}</td>
+          <td>${stu.aclass}</td>
           <td>${stu.birthday}</td>
           <td>${stu.phone}</td>
           <td>${majorLabel}</td>
           <td>${stu.year}</td>
           <td>${genderLabel}</td>
           <td>${stu.address}</td>
-          <td>${vehicleLabel}</td>
+          <td>${certificateLabel}</td>
           <td><button class="edit" onclick="updateStudent('${stu.phone}')" ><i class="fa-solid fa-pen-to-square" title="Sửa"></i> </button>  <button class="delete" onclick="deleteStudent('${stu.phone}')" ><i class="fa-solid fa-trash" title="Xóa"></i></button></td>
       </tr>`;
   });
@@ -328,20 +341,21 @@ function updateStudent(studentId) { //Cập nhật student
   $("#addressu").val(studentToUpdate.address);
   $("#majornamesu").val(studentToUpdate.majornames);
   $("#genderu").val(studentToUpdate.gender);
-  var vehicles = studentToUpdate.vehicle; // Lấy giá trị của studentToUpdate.vehicle
+  $("#aclassu").val(studentToUpdate.aclass);
+  var certificates = studentToUpdate.certificate; // Lấy giá trị của studentToUpdate.certificate
 
-  $('.vehiclesu input[name="vehicleu"]').each(function () {
+  $('.certificatesu input[name="certificateu"]').each(function () {
     var checkboxValue = $(this).val();
-    if (vehicles.includes(checkboxValue)) {
+    if (certificates.includes(checkboxValue)) {
       $(this).prop("checked", true);
     }
   });
-  var selectedVehicles = [];
-  $('.vehiclesu input[name="vehicleu"]:checked').each(function () {
-    selectedVehicles.push($(this).val());
+  var selectedcertificates = [];
+  $('.certificatesu input[name="certificateu"]:checked').each(function () {
+    selectedcertificates.push($(this).val());
   });
 
-  studentToUpdate.vehicle = selectedVehicles;
+  studentToUpdate.certificate = selectedcertificates;
 
   $("#update").click(function () { // Kiểm tra thông tin update (validate)
     let fullname = $("#fullnameu").val();
@@ -351,7 +365,8 @@ function updateStudent(studentId) { //Cập nhật student
     let address = $("#addressu").val();
     let majornames = $("#major-namesu").val();
     let year = $("#yearu").val();
-    let vehicle = $('input[name="vehicleu"]:checked')
+    let aclass = $("#aclassu").val();
+    let certificate = $('input[name="certificateu"]:checked')
       .map(function () {
         return $(this).val();
       })
@@ -427,11 +442,12 @@ function updateStudent(studentId) { //Cập nhật student
       studentToUpdate.birthday = birthday;
       studentToUpdate.gender = gender;
       studentToUpdate.code = code;
+      studentToUpdate.aclass = aclass;
       studentToUpdate.phone = phone;
       studentToUpdate.address = address;
       studentToUpdate.majornames = majornames;
       studentToUpdate.year = year;
-      studentToUpdate.vehicle = vehicle;
+      studentToUpdate.certificate = certificate;
 
       localStorage.setItem("student", JSON.stringify(student));
       renderListStudent();
@@ -454,13 +470,14 @@ function renderListStudentSearch() { // Hàm tìm kiếm
       <th>STT</th>
       <th>Họ và tên</th>
       <th>Mã sinh viên</th>
+      <th>Lớp</th>
       <th>Ngày sinh</th>
       <th>Số điện thoại</th>
       <th>Ngành</th>
       <th>Năm học</th>
       <th>Giới tính</th>
       <th>Quê quán</th>
-      <th>Phương tiện</th>
+      <th>Chứng chỉ</th>
       <th></th>
       </tr>`;
 
@@ -478,13 +495,12 @@ function renderListStudentSearch() { // Hàm tìm kiếm
       majorLabel = "Tài chính";
     }
 
-    let vehicleLabel = stu.vehicle;
-    vehicleLabel.forEach(funSwitch);
+    let certificateLabel = stu.certificate;
+    certificateLabel.forEach(funSwitch);
     function funSwitch(item, index, arr) {
-      if (arr[index] == "walk") arr[index] = "Đi bộ";
-      if (arr[index] == "motor") arr[index] = "Xe máy";
-      if (arr[index] == "bicycle") arr[index] = "Xe đạp";
-      if (arr[index] == "car") arr[index] = "Ô tô";
+      if (arr[index] == "aptis") arr[index] = " Aptis";
+      if (arr[index] == "ielts") arr[index] = " Ielts";
+      if (arr[index] == "toeic") arr[index] = " Toeic";
     }
 
     index++;
@@ -494,13 +510,14 @@ function renderListStudentSearch() { // Hàm tìm kiếm
           <td>${index}</td>
           <td>${stu.fullname}</td>
           <td>${stu.code}</td>
+          <td>${stu.aclass}</td>
           <td>${stu.birthday}</td>
           <td>${stu.phone}</td>
           <td>${majorLabel}</td>
           <td>${stu.year}</td>
           <td>${genderLabel}</td>
           <td>${stu.address}</td>
-          <td>${vehicleLabel}</td>
+          <td>${certificateLabel}</td>
           <td><button class="edit" onclick="updateStudent('${stu.phone}')" ><i class="fa-solid fa-pen-to-square" title="Sửa"></i></button>  <button class="delete" onclick="deleteStudent('${stu.phone}')" ><i class="fa-solid fa-trash" title="Xóa"></i></button></td>
       </tr>`;
   });

@@ -57,6 +57,17 @@
             <label>Địa chỉ</label>
             <input type="text" id="address" placeholder="VD: Hà Nội" />
             <br/>
+            <label>Khóa</label>
+            <select name="year" id="year" class="year"> 
+                <option value="2018">2018</option> 
+                <option value="2019">2019</option> 
+                <option value="2020">2020</option> 
+                <option value="2021">2021</option> 
+                <option value="2022">2022</option> 
+                <option value="2023">2023</option> 
+                <option value="2024">2024</option> 
+                </select>
+            <br/>
             <label for="major">Ngành học</label> 
                 <select name="major-names" id="major-names" class="major-names"> 
                 <option value="cntt">Công nghệ thông tin</option> 
@@ -65,20 +76,18 @@
                 <option value="tc">Tài chính</option> 
                 </select>
             <br/>
-            <label>Khóa</label>
-            <input type="text" id="year" class="year" value="2020"  />
+            <label>Lớp</label>
+                <input type="text" id="aclass" class="aclass"  placeholder="VD: 1"/>
             <br/>
-            <label for="vehicle">Phương tiện : </label> 
+            <label for="certificate">Chứng chỉ : </label> 
                 <br/>
-                <div class="vehicles">
-                    <input type="checkbox" id="walk" name="vehicle" value="walk">
-                    <label for="walk"> Đi bộ</label><br>
-                    <input type="checkbox" id="bicycle" name="vehicle" value="bicycle">
-                    <label for="bycicle"> Xe đạp</label><br>
-                    <input type="checkbox" id="motor" name="vehicle" value="motor">
-                    <label for="motor"> Xe máy</label><br>
-                    <input type="checkbox" id="car" name="vehicle" value="car">
-                    <label for="car"> Ô tô</label><br><br> 
+                <div class="certificates">
+                    <input type="checkbox" id="aptis" name="certificate" value="aptis">
+                    <label for="aptis"> Aptis</label><br>
+                    <input type="checkbox" id="ielt" name="certificate" value="ielts">
+                    <label for="ielts"> Ielts</label><br>
+                    <input type="checkbox" id="toeic" name="certificate" value="toeic">
+                    <label for="toeic"> Toeic</label><br>
                 </div> 
             <p><b>Các trường có (<strong class="strong*">*</strong>) yêu cầu phải nhập</b></p>
             <button class="save" id="save"><i class="fa-solid fa-check" style="color: green;"></i> <b>Lưu lại</b></button>
@@ -132,6 +141,17 @@
             <label>Địa chỉ</label>
             <input type="text" id="addressu" placeholder="VD: Hà Nội" style="width: 100px;"/>
             <br/>
+            <label>Khóa</label>
+            <select name="yearu" id="yearu" class="yearu"> 
+                <option value="2018">2018</option> 
+                <option value="2019">2019</option> 
+                <option value="2020">2020</option> 
+                <option value="2021">2021</option> 
+                <option value="2022">2022</option> 
+                <option value="2023">2023</option> 
+                <option value="2024">2024</option> 
+                </select>
+            <br/>
             <label for="major">Ngành học</label> 
                 <select name="major-namesu" id="major-namesu"> 
                 <option value="cntt">Công nghệ thông tin</option> 
@@ -140,20 +160,18 @@
                 <option value="tc">Tài chính</option> 
                 </select>
             <br/>
-            <label>Khóa</label>
-            <input type="text" id="yearu" class="yearu" value="2020" style="width: 50px; height: 25px;" />
+            <label>Lớp</label>
+                <input type="text" id="aclassu" class="aclassu" placeholder="VD: 1"/>
             <br/>
-            <label for="vehicleu">Phương tiện : </label> 
+            <label for="certificateu">Phương tiện : </label> 
                 <br/>
-                <div class="vehiclesu">
-                    <input type="checkbox" id="walku" name="vehicleu" value="walk">
-                    <label for="walk"> Đi bộ</label><br>
-                    <input type="checkbox" id="bicycleu" name="vehicleu" value="bicycle">
-                    <label for="bycicle"> Xe đạp</label><br>
-                    <input type="checkbox" id="motoru" name="vehicleu" value="motor">
-                    <label for="motor"> Xe máy</label><br>
-                    <input type="checkbox" id="caru" name="vehicleu" value="car">
-                    <label for="car"> Ô tô</label><br><br> 
+                <div class="certificatesu">
+                    <input type="checkbox" id="aptis" name="certificateu" value="aptis">
+                    <label for="aptis"> Aptis</label><br>
+                    <input type="checkbox" id="ielt" name="certificateu" value="ielts">
+                    <label for="ielts"> Ielts</label><br>
+                    <input type="checkbox" id="toeic" name="certificateu" value="toeic">
+                    <label for="toeic"> Toeic</label><br>
                 </div> 
             <p><b>Các trường có (<strong class="strong*">*</strong>) yêu cầu phải nhập</b></p>
             <button class="cancel"><i class="fa-solid fa-xmark" style="color: red;"></i> <b>Hủy</b></button>
