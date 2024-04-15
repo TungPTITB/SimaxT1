@@ -303,7 +303,7 @@ td:nth-of-type(9), th:nth-of-type(9), td:nth-of-type(10), th:nth-of-type(10){
         background-color: #8B0000;
         color: white;
     }
-    td:nth-of-type(5), th:nth-of-type(5), td:nth-of-type(8), th:nth-of-type(8),td:nth-of-type(9), th:nth-of-type(9), td:nth-of-type(10), th:nth-of-type(10), td:nth-of-type(11), th:nth-of-type(11){
+    td:nth-of-type(5), th:nth-of-type(5),td:nth-of-type(6), th:nth-of-type(6), td:nth-of-type(8), th:nth-of-type(8),td:nth-of-type(9), th:nth-of-type(9), td:nth-of-type(10), th:nth-of-type(10), td:nth-of-type(11), th:nth-of-type(11){
         display: none;
     }
     .info{
