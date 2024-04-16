@@ -123,6 +123,13 @@ $(document).ready(function () {
         $('#overlay').css("position", "relative"); // Reset overlay position
       }
     });
+    $(document).on('dblclick', function(event) {
+      if ($("#form-updatestudent").is(":visible") && !$(event.target).closest('#form-updatestudent').length) {
+        console.log("ok");
+        $("#form-updatestudent").hide();
+        $('#overlay').css("position", "relative"); // Reset overlay position
+      }
+    });
   
 
   $(".home").click(function () { // Click button Trang chủ
